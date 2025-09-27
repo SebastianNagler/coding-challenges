@@ -8,4 +8,4 @@ The primary goal of this repository is to track my progress, document my problem
 
 ## Automation
 
-The solutions in this repository are automatically synced using the [LeetSync](https://chrome.google.com/webstore/detail/leetsync-leetcode-to-gith/ppkbejeolfcbaomanmbpjdbkfcjfhjnd) browser extension.
+The LeetCode solutions in this repository are automatically synced using the [LeetSync](https://chrome.google.com/webstore/detail/leetsync-leetcode-to-gith/ppkbejeolfcbaomanmbpjdbkfcjfhjnd) browser extension.
