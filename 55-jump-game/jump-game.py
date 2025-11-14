@@ -10,4 +10,3 @@ class Solution:
                 highest = num_index + num
             elif num_index == highest:
                 return False
-        return True
