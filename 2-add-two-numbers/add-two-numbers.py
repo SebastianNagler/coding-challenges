@@ -29,16 +29,5 @@ class Solution:
                 l2_current = None
 
 
-        """
-        while l1_current.next != None and l2_current.next != None:
-            l1_current = l1_current.next
-            l2_current = l2_current.next
-            new_digit = l1_current.val + l2_current.val + digit_extra
-            l3_current.next = ListNode((new_digit) % 10)
-            digit_extra = (1 if new_digit > 9 else 0)
-            l3_current = l3_current.next
-        """
-
-        # if l1_current and l2_current are not None, set l3_current value and update l1_current, l2_current, l3_current to next
         return l3
 
