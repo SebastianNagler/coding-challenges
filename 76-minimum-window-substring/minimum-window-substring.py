@@ -3,10 +3,12 @@ class Solution:
         t_counter = Counter(t)
         len_s = len(s)
         len_t = len(t)
+        len_t_counter = len(t_counter)
         left = 0
         s_counter = Counter('')
         min_length = float('inf')
         solution = ''
+        num_insuff_chars = len_t_counter
 
         for right in range(len_s):
             right_char = s[right]
@@ -14,12 +16,18 @@ class Solution:
                 s_counter[right_char] += 1
             else:
                 s_counter[right_char] = 1
-            while t_counter <= s_counter:
+            if s_counter[right_char] == t_counter[right_char]:
+                num_insuff_chars -= 1
+            while num_insuff_chars == 0:
                 len_substr = right - left + 1
                 if len_substr < min_length:
                     solution = s[left:right + 1]
                     min_length = len_substr
+                left_char = s[left]
+                if s_counter[left_char] == t_counter[left_char]:
+                    num_insuff_chars += 1
                 s_counter[s[left]] -= 1
                 left += 1
+            
         return solution
             
