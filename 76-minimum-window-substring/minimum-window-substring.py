@@ -7,7 +7,7 @@ class Solution:
         left = 0
         s_counter = Counter('')
         min_length = float('inf')
-        solution = ''
+        solution_index = 0
         num_insuff_chars = len_t_counter
 
         for right in range(len_s):
@@ -21,7 +21,7 @@ class Solution:
             while num_insuff_chars == 0:
                 len_substr = right - left + 1
                 if len_substr < min_length:
-                    solution = s[left:right + 1]
+                    solution_index = left
                     min_length = len_substr
                 left_char = s[left]
                 if s_counter[left_char] == t_counter[left_char]:
@@ -29,5 +29,5 @@ class Solution:
                 s_counter[s[left]] -= 1
                 left += 1
             
-        return solution
+        return '' if min_length == float('inf') else s[solution_index:solution_index + min_length]
             
