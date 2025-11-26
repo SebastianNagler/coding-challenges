@@ -3,14 +3,12 @@ class MinStack:
     def __init__(self):
         self.array = []
         self.descending_mins = []
-        self.top_is_min = False
         
 
     def push(self, val: int) -> None:
         self.array.append(val)
         if (not self.descending_mins) or val <= self.descending_mins[-1]:
             self.descending_mins.append(val)
-            self.top_is_min = True
         
     def pop(self) -> None:
         val = self.array[-1]
