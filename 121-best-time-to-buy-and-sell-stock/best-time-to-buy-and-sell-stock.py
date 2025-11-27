@@ -3,7 +3,9 @@ class Solution:
         max_profit = 0
         left = 0
         for right in range(len(prices)):
-            if prices[right] < prices[left]:
+            left_price, right_price = prices[left], prices[right]
+            if right_price < left_price:
                 left = right
-            max_profit = max(max_profit, prices[right] - prices[left])
+            else:
+                max_profit = max(max_profit, right_price - left_price)
         return max_profit
