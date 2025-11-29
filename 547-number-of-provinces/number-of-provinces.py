@@ -6,7 +6,7 @@ class Solution:
         self.parent = list(range(n))
         self.size = [1] * n
         for row in range(n):
-            for column in range(n):
+            for column in range(row + 1, n):
                 if isConnected[row][column]:
                     self.union(row, column)
         return self.num_provinces
