@@ -17,8 +17,8 @@ class Solution:
         while node_idx != self.parent[node_idx]:
             node_idx = self.parent[node_idx]
         while node_idx != node_idx_copy:
-            self.parent[node_idx_copy] = node_idx
             node_idx_copy = self.parent[node_idx_copy]
+            self.parent[node_idx_copy] = node_idx
         return node_idx
 
     def union(self, node1, node2):
