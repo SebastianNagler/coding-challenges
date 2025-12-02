@@ -9,5 +9,5 @@ class Solution:
                 if text1[row-1] == text2[col-1]:
                     matrix[row][col] = matrix[row-1][col-1] + 1
                 else:
-                    matrix[row][col] = max(matrix[row-1][col-1], matrix[row][col-1], matrix[row-1][col])
+                    matrix[row][col] = max(matrix[row][col-1], matrix[row-1][col])
         return matrix[num_rows][num_cols]
