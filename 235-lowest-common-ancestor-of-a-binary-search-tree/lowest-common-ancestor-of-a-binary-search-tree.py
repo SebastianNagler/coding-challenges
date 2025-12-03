@@ -7,25 +7,10 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        queue = deque([root])
-        parent = {root.val: None}
-        while queue:
-            popped_node = queue.popleft()
-            for child in (popped_node.left, popped_node.right):
-                if child is not None:
-                    queue.append(child)
-                    parent[child.val] = popped_node
-        
-        visited = {p.val, q.val}
         while True:
-            if parent[p.val] is not None:
-                p = parent[p.val]
-                if p.val in visited:
-                    return p
-                visited.add(p.val)
-            if parent[q.val] is not None:
-                q = parent[q.val]
-                if q.val in visited:
-                    return q
-                visited.add(q.val)
-            
+            if (p.val < root.val < q.val) or (p.val > root.val > q.val) or (root.val in (p.val, q.val)):
+                return root
+            elif p.val < root.val:
+                root = root.left
+            else:
+                root = root.right
