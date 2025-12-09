@@ -32,10 +32,10 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        vals = deque(data.split(','))
+        vals = iter(data.split(','))
         
         def recursiveDeserialize():
-            val = vals.popleft()
+            val = next(vals)
             if val == 'N':
                 return None
             else:
