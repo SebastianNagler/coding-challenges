@@ -3,8 +3,7 @@ class Solution:
         def recursivePermute(nums):
             len_nums = len(nums)
             if len_nums == 1:
-                nums_copy = copy.deepcopy(nums)
-                return [nums_copy]
+                return [nums[:]]
             perms = [item[:] for item in recursivePermute(nums[:-1]) for _ in range(len_nums)]
             new_num = nums[-1]
             i = 0
