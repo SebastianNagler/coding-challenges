@@ -5,7 +5,7 @@ class Solution:
             if len_nums == 1:
                 nums_copy = copy.deepcopy(nums)
                 return [nums_copy]
-            perms = [copy.deepcopy(item) for item in recursivePermute(nums[:-1]) for _ in range(len_nums)]
+            perms = [item[:] for item in recursivePermute(nums[:-1]) for _ in range(len_nums)]
             new_num = nums[-1]
             i = 0
             for perm in perms:
