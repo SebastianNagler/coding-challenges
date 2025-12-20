@@ -1,6 +1,6 @@
 # Coding Challenges
 
-This repository contains my solutions to various coding challenges from [LeetCode.com](https://leetcode.com) and [Exercism.com](https://exercism.org).
+This repository contains my solutions to various coding challenges from [LeetCode.com](https://leetcode.com) and [Exercism.org](https://exercism.org).
 
 ## Purpose
 
