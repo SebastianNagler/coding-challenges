@@ -10,7 +10,7 @@ class Solution:
             first_row.append(int(first_row[-1]))
             if nums[i - 1] == 0:
                 first_row[-1] *= 2
-        grid = [first_row] + [[0 for i in range(num_cols)] for i in range(num_rows - 1)]
+        grid = [first_row] + [[0] * num_cols for _ in range(num_rows - 1)]
         for row in range(1, num_rows):
             for col in range(1, num_cols):
                 grid[row][col] += grid[row][col - 1]
