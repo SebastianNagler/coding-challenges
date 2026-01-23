@@ -2,10 +2,13 @@ class Solution:
     def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
         if len(hand) % groupSize != 0:
             return False
+        heapq.heapify(hand)
         counter = Counter(hand)
         for _ in range(int(len(hand) / groupSize)):
-            max_counter = max(counter)
-            for card_num in range(max_counter, max_counter - groupSize, -1):
+            min_counter = heapq.heappop(hand)
+            while min_counter not in counter:
+                min_counter = heapq.heappop(hand)
+            for card_num in range(min_counter, min_counter + groupSize):
                 if card_num in counter:
                     if counter[card_num] == 1:
                         del counter[card_num]
