@@ -1,12 +1,11 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
+        cum_max = -101
         i = 0
-        j = 1
-        while j < len(nums):
-            if nums[j] > nums[i]:
-                nums[i+1] = nums[j]
+        for j in range(len(nums)):
+            if nums[j] > cum_max:
+                cum_max = nums[j]
+                nums[j], nums[i] = nums[i], nums[j]
                 i += 1
-                j += 1
-            else:
-                j += 1
-        return i + 1
+
+        return i
