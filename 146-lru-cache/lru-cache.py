@@ -2,22 +2,23 @@ class LRUCache:
 
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.d = OrderedDict()
-        
+        self.d = deque()
+        self.map = {}
 
     def get(self, key: int) -> int:
-        if key in self.d:
-            self.d.move_to_end(key)
-            return self.d[key]
-        else:
-            return -1
-
+        if key in self.map:
+            val = self.map[key]
+            del self.map[key]
+            self.map[key] = val
+            return val
+        return -1
+        
     def put(self, key: int, value: int) -> None:
-        self.d[key] = value
-        self.d.move_to_end(key)
-        if len(self.d) > self.capacity:
-            lru_key = next(iter(self.d))
-            del self.d[lru_key]
+        if len(self.map) == self.capacity and key not in self.map:
+            del self.map[next(iter(self.map))]
+        if key in self.map:
+            del self.map[key]
+        self.map[key] = value
         
 
 
