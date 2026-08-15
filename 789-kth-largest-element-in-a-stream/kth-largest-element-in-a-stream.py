@@ -1,20 +1,27 @@
 class KthLargest:
 
     def __init__(self, k: int, nums: List[int]):
-        self.missing = len(nums) < k
-        self.heap = nums[:k] if not self.missing else nums[:k-1]
-        heapq.heapify(self.heap)
-        for elem in nums[k:]:
-            if elem > self.heap[0]:
-                heapq.heappushpop(self.heap, elem)
+        self.k = k
+        if len(nums) == k - 1:
+            heap = nums + [float("-inf")]
+            heapq.heapify(heap)
+            self.nums = heap
+        elif len(nums) == k:
+            heapq.heapify(nums)
+            self.nums = nums
+        else:
+            heap = nums[0:k]
+            heapq.heapify(heap)
+            for num in nums[k:]:
+                if num > heap[0]:
+                    heapq.heappushpop(heap, num)
+            self.nums = heap
+        
 
     def add(self, val: int) -> int:
-        if self.missing:
-            heapq.heappush(self.heap, val)
-            self.missing = False
-        elif val > self.heap[0]:
-            heapq.heappushpop(self.heap, val)
-        return self.heap[0]
+        if val > self.nums[0]:
+            heapq.heappushpop(self.nums, val)
+        return self.nums[0]
         
 
 
