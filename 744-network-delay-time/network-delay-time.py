@@ -1,18 +1,31 @@
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
-        graph = {node: [] for node in range(1, n+1)}
-        for source, target, time in times:
-            graph[source].append((target, time))
-        heap = [(0, k)]
-        dist = [float("inf") for _ in range(n)]
-        dist[k - 1] = 0
-        while heap:
-            popped_dist, popped_node = heapq.heappop(heap)
-            if popped_dist == dist[popped_node - 1]:
-                for child, weight in graph[popped_node]:
-                    if popped_dist + weight < dist[child - 1]:
-                        dist[child - 1] = popped_dist + weight
-                        heapq.heappush(heap, (dist[child - 1], child))
-        max_entry = max(dist)
-        return -1 if max_entry == float("inf") else max_entry
+        k -= 1
+        graph = [[] for i in range(n)]
+        dist = [float("inf")] * n
+        dist[k] = 0
+        for triple in times:
+            graph[triple[0] - 1].append((triple[1] - 1, triple[2]))
 
+        heap = [(0, k)]
+
+        nr = 0
+
+        seen = set()
+
+        while heap:
+            pop_dist, pop_idx = heapq.heappop(heap)
+            if pop_dist == dist[pop_idx]:
+                if pop_idx in seen:
+                    continue
+                seen.add(pop_idx)
+                nr += 1
+                for out_idx, out_w in graph[pop_idx]:
+                    out_dist = pop_dist + out_w
+                    if out_dist < dist[out_idx]:
+                        dist[out_idx] = out_dist
+                        heapq.heappush(heap, (out_dist, out_idx))
+
+        if nr != n:
+            return -1
+        return max(dist)
