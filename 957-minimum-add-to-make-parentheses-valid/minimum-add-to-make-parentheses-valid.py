@@ -1,9 +1,13 @@
 class Solution:
     def minAddToMakeValid(self, s: str) -> int:
-        new_s = []
+        closed_prefix = 0
+        open_suffix = 0
         for char in s:
-            if not new_s or not (new_s[-1] == '(' and char == ')'):
-                new_s.append(char)
+            if char == '(':
+                open_suffix += 1
             else:
-                new_s.pop()
-        return len(new_s)
+                if open_suffix > 0:
+                    open_suffix -= 1
+                else:
+                    closed_prefix += 1
+        return closed_prefix + open_suffix
