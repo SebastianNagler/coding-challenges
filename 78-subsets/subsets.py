@@ -1,12 +1,17 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        def subsets_with_num(subsets: List[List[int]], num: int):
-            return [subset + [num] for subset in subsets]
+        len_nums = len(nums)
+        res = []
+        path = []
 
-        def recursiveSubsets(numbers: List[int]):
-            if not numbers: 
-                return [[]]
-            half_subsets = recursiveSubsets(numbers[:-1])
-            return half_subsets + subsets_with_num(half_subsets, numbers[-1])
+        def backtracking(start):
+            res.append(path[:])
+            if start == len_nums:
+                return
+            for i in range(start, len_nums):
+                path.append(nums[i])
+                backtracking(i + 1)
+                path.pop()
 
-        return recursiveSubsets(nums)
+        backtracking(0)
+        return res
